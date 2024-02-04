@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+    </style>
+        
+        <h2>A basic HTML table</h2>
+
+        <a href="/contact/">Contact</a>
+        <a href="/about/">About</a>
+        
+        <table class="container">
+          <tr>
+            <th>S. No.</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Can Vote?</th>
+          </tr>
+          {% for people in peoples %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{people.name}}</td>
+            <td>{{people.age}}</td>
+            <td {% if people.age <= 18 %} style="background:red" {% endif %}>
+                {% if people.age >= 18 %}
+                👍🏻
+                {% else %}
+                👎🏻
+                {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+
+        <p>
+            {% if "cucumber" in vegatables %}
+                Yes Available
+            {% elif "Tomato" in vegatables %}
+                Yes Available    
+            {% else %}
+                Not Available
+            {% endif %}         
+        </p>
+
+        <div class="container">
+          <h1>Sending Email to Client</h1>
+          <a href="/" class="btn btn-success">Send Email</a>
+        </div>
+
+{% endblock %}
